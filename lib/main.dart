@@ -1,43 +1,84 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
-      theme: ThemeData(
-        // useMaterial3: false,
-        primarySwatch: Colors.blue,
-      ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
+      debugShowCheckedModeBanner: false, // Elimina la barra de "Debug"
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Luis Orlando Sifuentes',
+            style: TextStyle(
+              fontFamily: 'Pacifico',
+              fontSize: 24,
+              fontWeight: FontWeight.normal,
+              color: Colors.white,
+            ),
+          ),
+          backgroundColor: Color(0xFFE10600), // Rojo brillante - Rayo McQueen
+        ),
+        body: Center(
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                width: 300,
+                height: 200,
+                decoration: BoxDecoration(
+                  color: Color(0xFFE10600), // Fondo rojo Rayo McQueen
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(0xFFFFD800)
+                          .withOpacity(0.5), // Amarillo como sombra
+                      blurRadius: 10,
+                      spreadRadius: 5,
+                      offset: Offset(0, 5),
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _buildCatInfo('marca', 'wilson'),
+                  _buildCatInfo('calidad', 'piel'),
+                  _buildCatInfo('precio', '3500'),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
+    );
+  }
+
+  Widget _buildCatInfo(String title, String value) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          title,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFFFFD800), // Amarillo vibrante
+          ),
+        ),
+        SizedBox(height: 5),
+        Text(
+          value,
+          style: TextStyle(
+            fontSize: 14,
+            color: Colors.white, // Texto blanco para contraste
+          ),
+        ),
+      ],
     );
   }
 }
